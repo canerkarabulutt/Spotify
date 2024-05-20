@@ -16,6 +16,11 @@
 		2B739A772BF7984B007DCDDC /* FeaturedPlaylistCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B739A762BF7984B007DCDDC /* FeaturedPlaylistCollectionViewCell.swift */; };
 		2B739A792BF79861007DCDDC /* RecommendedTrackCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B739A782BF79861007DCDDC /* RecommendedTrackCollectionViewCell.swift */; };
 		2B739A7B2BF7994A007DCDDC /* NewReleasesCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B739A7A2BF7994A007DCDDC /* NewReleasesCellViewModel.swift */; };
+		2B739A7D2BFB4563007DCDDC /* FeaturedPlaylistCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B739A7C2BFB4563007DCDDC /* FeaturedPlaylistCellViewModel.swift */; };
+		2B739A7F2BFB4601007DCDDC /* RecommendedTrackCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B739A7E2BFB4601007DCDDC /* RecommendedTrackCellViewModel.swift */; };
+		2B739A812BFB563C007DCDDC /* AlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B739A802BFB563C007DCDDC /* AlbumViewController.swift */; };
+		2B739A832BFB5C0E007DCDDC /* AlbumDetailsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B739A822BFB5C0E007DCDDC /* AlbumDetailsResponse.swift */; };
+		2B739A852BFB6053007DCDDC /* PlaylistDetailsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B739A842BFB6053007DCDDC /* PlaylistDetailsResponse.swift */; };
 		2B850F632BDBCA1B0064B3C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B850F622BDBCA1B0064B3C0 /* AppDelegate.swift */; };
 		2B850F652BDBCA1B0064B3C0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B850F642BDBCA1B0064B3C0 /* SceneDelegate.swift */; };
 		2B850F672BDBCA1B0064B3C0 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B850F662BDBCA1B0064B3C0 /* HomeViewController.swift */; };
@@ -54,6 +59,11 @@
 		2B739A762BF7984B007DCDDC /* FeaturedPlaylistCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedPlaylistCollectionViewCell.swift; sourceTree = "<group>"; };
 		2B739A782BF79861007DCDDC /* RecommendedTrackCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedTrackCollectionViewCell.swift; sourceTree = "<group>"; };
 		2B739A7A2BF7994A007DCDDC /* NewReleasesCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewReleasesCellViewModel.swift; sourceTree = "<group>"; };
+		2B739A7C2BFB4563007DCDDC /* FeaturedPlaylistCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedPlaylistCellViewModel.swift; sourceTree = "<group>"; };
+		2B739A7E2BFB4601007DCDDC /* RecommendedTrackCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedTrackCellViewModel.swift; sourceTree = "<group>"; };
+		2B739A802BFB563C007DCDDC /* AlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewController.swift; sourceTree = "<group>"; };
+		2B739A822BFB5C0E007DCDDC /* AlbumDetailsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailsResponse.swift; sourceTree = "<group>"; };
+		2B739A842BFB6053007DCDDC /* PlaylistDetailsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistDetailsResponse.swift; sourceTree = "<group>"; };
 		2B850F5F2BDBCA1B0064B3C0 /* Spotify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spotify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B850F622BDBCA1B0064B3C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2B850F642BDBCA1B0064B3C0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -165,6 +175,8 @@
 				2B739A6E2BF773CD007DCDDC /* FeaturedPlaylistsResponse.swift */,
 				2B739A702BF778D6007DCDDC /* RecommendedGenresResponse.swift */,
 				2B739A722BF77BBB007DCDDC /* RecommendationsResponse.swift */,
+				2B739A822BFB5C0E007DCDDC /* AlbumDetailsResponse.swift */,
+				2B739A842BFB6053007DCDDC /* PlaylistDetailsResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -173,6 +185,8 @@
 			isa = PBXGroup;
 			children = (
 				2B739A7A2BF7994A007DCDDC /* NewReleasesCellViewModel.swift */,
+				2B739A7C2BFB4563007DCDDC /* FeaturedPlaylistCellViewModel.swift */,
+				2B739A7E2BFB4601007DCDDC /* RecommendedTrackCellViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -226,6 +240,7 @@
 				2B850F8D2BDBCD970064B3C0 /* PlayerViewController.swift */,
 				2B850F8F2BDBCDAC0064B3C0 /* PlaylistViewController.swift */,
 				2B850F912BDBCDB90064B3C0 /* SearchResultsViewController.swift */,
+				2B739A802BFB563C007DCDDC /* AlbumViewController.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -370,10 +385,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B850F802BDBCD120064B3C0 /* SearchViewController.swift in Sources */,
+				2B739A852BFB6053007DCDDC /* PlaylistDetailsResponse.swift in Sources */,
 				2B850F9A2BDBCE180064B3C0 /* Playlist.swift in Sources */,
 				2B850F942BDBCDD70064B3C0 /* AuthManager.swift in Sources */,
 				2B739A7B2BF7994A007DCDDC /* NewReleasesCellViewModel.swift in Sources */,
+				2B739A7F2BFB4601007DCDDC /* RecommendedTrackCellViewModel.swift in Sources */,
 				2B850F922BDBCDB90064B3C0 /* SearchResultsViewController.swift in Sources */,
+				2B739A812BFB563C007DCDDC /* AlbumViewController.swift in Sources */,
+				2B739A7D2BFB4563007DCDDC /* FeaturedPlaylistCellViewModel.swift in Sources */,
 				2B850F882BDBCD6F0064B3C0 /* WelcomeViewController.swift in Sources */,
 				2B850F8C2BDBCD8B0064B3C0 /* ProfileViewController.swift in Sources */,
 				2B850F672BDBCA1B0064B3C0 /* HomeViewController.swift in Sources */,
@@ -397,6 +416,7 @@
 				2B850F902BDBCDAC0064B3C0 /* PlaylistViewController.swift in Sources */,
 				2B850F652BDBCA1B0064B3C0 /* SceneDelegate.swift in Sources */,
 				2B850F8E2BDBCD970064B3C0 /* PlayerViewController.swift in Sources */,
+				2B739A832BFB5C0E007DCDDC /* AlbumDetailsResponse.swift in Sources */,
 				2B850F962BDBCDEE0064B3C0 /* APICaller.swift in Sources */,
 				2B739A6F2BF773CD007DCDDC /* FeaturedPlaylistsResponse.swift in Sources */,
 				2B850F8A2BDBCD7D0064B3C0 /* SettingsViewController.swift in Sources */,
