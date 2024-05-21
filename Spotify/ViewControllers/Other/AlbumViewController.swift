@@ -10,7 +10,7 @@ import UIKit
 class AlbumViewController: UIViewController {
     //MARK: - Properties
     private let album: Album
-    private var viewModels: [AlbumCollectionCellViewModel] = []
+    private var viewModels: [AlbumCellViewModel] = []
     
     private let collectionView : UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewCompositionalLayout(sectionProvider: { _, _ -> NSCollectionLayoutSection in
         let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))
@@ -48,7 +48,7 @@ extension AlbumViewController {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let model):
-                    self?.viewModels = model.tracks.items.compactMap({ AlbumCollectionCellViewModel(name: $0.name, artistName: $0.artists.first?.name ?? "")})
+                    self?.viewModels = model.tracks.items.compactMap({ AlbumCellViewModel(name: $0.name, artistName: $0.artists.first?.name ?? "")})
                     self?.collectionView.reloadData()
                 case .failure(let error):
                     print(error.localizedDescription)

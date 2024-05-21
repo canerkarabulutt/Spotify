@@ -19,7 +19,7 @@ class SearchResultsViewController: UIViewController {
 //MARK: - Helpers
 extension SearchResultsViewController {
     private func style() {
-        
+        view.backgroundColor = .systemBackground
     }
     private func layout() {
         

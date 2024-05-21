@@ -27,7 +27,6 @@ class AlbumTrackCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         style()
     }
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -37,7 +36,6 @@ class AlbumTrackCollectionViewCell: UICollectionViewCell {
         artistNameLabel.sizeToFit()
         trackNameLabel.frame = CGRect(x: 10, y: 0, width: contentView.width-15, height: contentView.height/2)
         artistNameLabel.frame = CGRect(x: 10, y: contentView.height/2, width: contentView.width-15, height: contentView.height/2)
-        
     }
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -54,7 +52,7 @@ extension AlbumTrackCollectionViewCell {
         contentView.addSubview(artistNameLabel)
         contentView.clipsToBounds = true
     }
-    func configure(with viewModel: AlbumCollectionCellViewModel) {
+    func configure(with viewModel: AlbumCellViewModel) {
         trackNameLabel.text = viewModel.name
         artistNameLabel.text = viewModel.artistName
     }
