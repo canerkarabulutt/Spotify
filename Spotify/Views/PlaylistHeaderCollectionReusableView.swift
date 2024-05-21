@@ -16,6 +16,7 @@ final class PlaylistHeaderCollectionReusableView: UICollectionReusableView {
     static let identifier = "PlaylistHeaderCollectionReusableView"
     
     weak var delegate: PlaylistHeaderCollectionReusableViewDelegate?
+    
     //MARK: - Properties
     private let imageView: UIImageView = {
         let imageView = UIImageView()

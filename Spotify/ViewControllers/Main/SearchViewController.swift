@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class SearchViewController: UIViewController {
     //MARK: - Properties
@@ -21,7 +22,7 @@ class SearchViewController: UIViewController {
         let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .fractionalHeight(1)))
         item.contentInsets = NSDirectionalEdgeInsets(top: 2, leading: 7, bottom: 2, trailing: 7)
         let grouo = NSCollectionLayoutGroup.horizontal(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(150)), subitems: [item])
-        grouo.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 0)
+        grouo.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 0, bottom: 8, trailing: 0)
         return NSCollectionLayoutSection(group: grouo)
     }))
     //MARK: - Lifecycle
@@ -56,6 +57,7 @@ extension SearchViewController {
     private func style() {
         view.backgroundColor = .systemBackground
         searchController.searchResultsUpdater = self
+        searchController.searchBar.delegate = self
         navigationItem.searchController = searchController
         view.addSubview(collectionView)
         collectionView.register(CategoryCollectionViewCell.self, forCellWithReuseIdentifier: CategoryCollectionViewCell.identifier)
@@ -63,15 +65,30 @@ extension SearchViewController {
         collectionView.dataSource = self
     }
 }
-//MARK: - UISearchResultsUpdating
-extension SearchViewController: UISearchResultsUpdating {
+//MARK: - UISearchResultsUpdating & UISearchBarDelegate
+extension SearchViewController: UISearchResultsUpdating, UISearchBarDelegate {
     func updateSearchResults(for searchController: UISearchController) {
+
+        
+    }
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let resultsController = searchController.searchResultsController as? SearchResultsViewController,
-              let query = searchController.searchBar.text,
+              let query = searchBar.text,
               !query.trimmingCharacters(in: .whitespaces).isEmpty else {
             return
         }
-        print(query)
+        resultsController.delegate = self
+        
+        APICaller.shared.search(with: query) { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let results):
+                    resultsController.update(with: results)
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        }
     }
 }
 //MARK: - UICollectionViewDelegate & UICollectionViewDataSource
@@ -94,5 +111,26 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
         let vc = CategoryViewController(category: category)
         navigationItem.largeTitleDisplayMode = .never
         navigationController?.pushViewController(vc, animated: true)
+    }
+}
+//MARK: - SearchResultsViewControllerDelegate
+extension SearchViewController: SearchResultsViewControllerDelegate {
+    func didTapResult(_ result: SearchResult) {
+        switch result {
+        case .artist(let model):
+            guard let url = URL(string: model.external_urls["spotify"] ?? "") else { return }
+            let vc = SFSafariViewController(url: url)
+            present(vc, animated: true)
+        case .album(let model):
+            let vc = AlbumViewController(album: model)
+            vc.navigationItem.largeTitleDisplayMode = .never
+            navigationController?.pushViewController(vc, animated: true)
+        case .track(let model):
+            break
+        case .playlist(let model):
+            let vc = PlaylistViewController(playlist: model)
+            vc.navigationItem.largeTitleDisplayMode = .never
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
 }
