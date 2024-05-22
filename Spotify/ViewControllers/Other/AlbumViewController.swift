@@ -11,6 +11,7 @@ class AlbumViewController: UIViewController {
     //MARK: - Properties
     private let album: Album
     private var viewModels: [AlbumCellViewModel] = []
+    private var tracks: [AudioTrack] = []
     
     private let collectionView : UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewCompositionalLayout(sectionProvider: { _, _ -> NSCollectionLayoutSection in
         let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))
@@ -48,6 +49,7 @@ extension AlbumViewController {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let model):
+                    self?.tracks = model.tracks.items
                     self?.viewModels = model.tracks.items.compactMap({ AlbumCellViewModel(name: $0.name, artistName: $0.artists.first?.name ?? "")})
                     self?.collectionView.reloadData()
                 case .failure(let error):
@@ -94,11 +96,13 @@ extension AlbumViewController: UICollectionViewDelegate, UICollectionViewDataSou
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
+        let track = tracks[indexPath.row]
+        PlaybackPresenter.shared.startPlayback(from: self, track: track)
     }
 }
 //MARK: - PlaylistHeaderCollectionReusableViewDelegate
 extension AlbumViewController: PlaylistHeaderCollectionReusableViewDelegate {
     func playlistHeaderCollectionReusableViewDidTapPlayAll(_ header: PlaylistHeaderCollectionReusableView) {
-        print("play")
+        PlaybackPresenter.shared.startPlayback(from: self, tracks: tracks)
     }
 }

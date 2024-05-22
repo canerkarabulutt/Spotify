@@ -11,6 +11,7 @@ class PlaylistViewController: UIViewController {
     //MARK: - Properties
     private let playlist: Playlist
     private var viewModels: [RecommendedTrackCellViewModel] = []
+    private var tracks: [AudioTrack] = []
     
     private let collectionView : UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewCompositionalLayout(sectionProvider: { _, _ -> NSCollectionLayoutSection in
         let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))
@@ -47,6 +48,7 @@ extension PlaylistViewController {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let model):
+                    self?.tracks = model.tracks.items.compactMap({ $0.track })
                     self?.viewModels = model.tracks.items.compactMap({ RecommendedTrackCellViewModel(name: $0.track.name, artistName: $0.track.artists.first?.name ?? "", artworkURL: URL(string: $0.track.album?.images.first?.url ?? ""))})
                     self?.collectionView.reloadData()
                 case .failure(let error):
@@ -104,11 +106,14 @@ extension PlaylistViewController: UICollectionViewDelegate, UICollectionViewData
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
+        let index = indexPath.row
+        let track = tracks[index]
+        PlaybackPresenter.shared.startPlayback(from: self, track: track)
     }
 }
 //MARK: - PlaylistHeaderCollectionReusableViewDelegate
 extension PlaylistViewController: PlaylistHeaderCollectionReusableViewDelegate {
     func playlistHeaderCollectionReusableViewDidTapPlayAll(_ header: PlaylistHeaderCollectionReusableView) {
-        print("play")
+        PlaybackPresenter.shared.startPlayback(from: self, tracks: tracks)
     }
 }
