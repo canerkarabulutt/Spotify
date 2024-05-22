@@ -21,9 +21,9 @@ class PlayerViewController: UIViewController {
     weak var delegate: PlayerViewControllerDelegate?
     
     private let controlsView = PlayerControlsView()
+    
     private let imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = .purple
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()
@@ -64,6 +64,9 @@ extension PlayerViewController {
     private func configure() {
         imageView.sd_setImage(with: dataSource?.imageURL, completed: nil)
         controlsView.configure(with: PlayerControlsViewModel(title: dataSource?.songName, subtitle: dataSource?.subtitle))
+    }
+    func refreshUI() {
+        configure()
     }
 }
 //MARK: - PlayerControlsViewDelegate
