@@ -15,3 +15,4 @@ struct Playlist: Codable {
     let owner: User
     let images: [APIImage]
 }
+

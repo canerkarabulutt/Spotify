@@ -66,7 +66,7 @@ extension SearchResultSubtitleTableViewCell {
         accessoryType = .disclosureIndicator
     }
     func configure(with viewModel: SearchResultSubtitleTableViewCellViewModel) {
-        iconImageView.sd_setImage(with: viewModel.imageURL, completed: nil)
+        iconImageView.sd_setImage(with: viewModel.imageURL, placeholderImage: UIImage(systemName: "photo"), completed: nil)
         label.text = viewModel.title
         subtitleLabel.text = viewModel.subtitle
     }
