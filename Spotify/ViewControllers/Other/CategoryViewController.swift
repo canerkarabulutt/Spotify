@@ -77,7 +77,7 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FeaturedPlaylistCollectionViewCell.identifier, for: indexPath) as? FeaturedPlaylistCollectionViewCell else { return UICollectionViewCell() }
         let playlist = playlists[indexPath.row]
-        let viewModel = FeaturedPlaylistCellViewModel(name: playlist.name, artworkURL: URL(string: playlist.images.first?.url ?? ""), creatorName: playlist.owner.display_name)
+        let viewModel = FeaturedPlaylistCellViewModel(name: playlist.name, artworkURL: URL(string: playlist.images?.first?.url ?? ""), creatorName: playlist.owner.display_name)
         cell.configure(with: viewModel)
         return cell
     }

@@ -40,7 +40,6 @@ class SearchResultSubtitleTableViewCell: UITableViewCell {
         super.layoutSubviews()
         let imageSize: CGFloat = contentView.height-10
         iconImageView.frame = CGRect(x: 10, y: 0, width: imageSize, height: imageSize)
-        iconImageView.layer.cornerRadius = imageSize/2
         iconImageView.layer.masksToBounds = true
         
         let labelHeight = contentView.height/2

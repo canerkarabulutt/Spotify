@@ -45,6 +45,7 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         style()
         fetchData()
+        addLongTapGesture()
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -58,6 +59,30 @@ extension HomeViewController {
         vc.title = "Settings"
         vc.navigationItem.largeTitleDisplayMode = .never
         navigationController?.pushViewController(vc, animated: true)
+    }
+    @objc private func didLongPress(_ gesture: UILongPressGestureRecognizer) {
+        guard gesture.state == .began else { return }
+        
+        let touchPoint = gesture.location(in: collectionView)
+        
+        guard let indexPath = collectionView.indexPathForItem(at: touchPoint), indexPath.section == 2 else { return }
+        
+        let model = tracks[indexPath.row]
+        let actionSheet = UIAlertController(title: model.name, message: "Would you like to add this to a playlist?", preferredStyle: .actionSheet)
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        actionSheet.addAction(UIAlertAction(title: "Add to Playlist", style: .default, handler: { [weak self] _ in
+            DispatchQueue.main.async {
+                let vc = LibraryPlaylistsViewController()
+                vc.selectionHandler = { playlist in
+                    APICaller.shared.addTrackToPlaylist(track: model, playlist: playlist) { success in
+                        print("Added to playlist success: \(success)")
+                    }
+                }
+                vc.title = "Select Playlist"
+                self?.present(UINavigationController(rootViewController: vc), animated: true)
+            }
+        }))
+        present(actionSheet, animated: true)
     }
 }
 //MARK: - Services
@@ -138,7 +163,7 @@ extension HomeViewController {
             return NewReleasesCellViewModel(name: $0.name, artworkUrl: URL(string: $0.images.first?.url ?? ""), numberOfTracks: $0.total_tracks, artistName: $0.artists.first?.name ?? "")
         })))
         sections.append(.featuredPlaylists(viewModels: playlists.compactMap({
-            return FeaturedPlaylistCellViewModel(name: $0.name, artworkURL: URL(string: $0.images.first?.url ?? ""), creatorName: $0.owner.display_name)
+            return FeaturedPlaylistCellViewModel(name: $0.name, artworkURL: URL(string: $0.images?.first?.url ?? ""), creatorName: $0.owner.display_name)
         })))
         sections.append(.recommendedTracks(viewModels: tracks.compactMap({
             return RecommendedTrackCellViewModel(name: $0.name, artistName: $0.artists.first?.name ?? "", artworkURL: URL(string: $0.album?.images.first?.url ?? ""))
@@ -200,6 +225,11 @@ extension HomeViewController {
             section.orthogonalScrollingBehavior = .groupPaging
             return section
         }
+    }
+    private func addLongTapGesture() {
+        let gesture = UILongPressGestureRecognizer(target: self, action: #selector(didLongPress(_:)))
+        collectionView.isUserInteractionEnabled = true
+        collectionView.addGestureRecognizer(gesture)
     }
 }
 //MARK: - UICollectionViewDelegate & UICollectionViewDataSource

@@ -89,7 +89,7 @@ extension PlaylistHeaderCollectionReusableView {
         playAllButton.addTarget(self, action: #selector(didTapPlayAll), for: .touchUpInside)
     }
     func configure(with viewModel: PlaylistHeaderViewViewModel) {
-        imageView.sd_setImage(with: viewModel.artworkURL, completed: nil)
+        imageView.sd_setImage(with: viewModel.artworkURL, placeholderImage: UIImage(systemName: "photo"), completed: nil)
         nameLabel.text = viewModel.name
         descriptionLabel.text = viewModel.description
         ownerLabel.text = viewModel.ownerName
