@@ -113,7 +113,7 @@ final class APICaller {
             task.resume()
         }
     }
-    //MARK: - Albums
+    //MARK: - Album Details
     public func getAlbumDetails(for album: Album, completion: @escaping (Result<AlbumDetailsResponse, Error>) -> Void) {
         createRequest(with: URL(string: Constants.baseURL + "/albums/" + album.id), type: .GET) { request in
             let task = URLSession.shared.dataTask(with: request) { data, _, error in
@@ -131,7 +131,7 @@ final class APICaller {
             task.resume()
         }
     }
-    //MARK: - Playlists
+    //MARK: - Playlist Details
     public func getPlaylistDetails(for playlist: Playlist, completion: @escaping (Result<PlaylistDetailsResponse, Error>) -> Void) {
         createRequest(with: URL(string: Constants.baseURL + "/playlists/" + playlist.id), type: .GET) { request in
             let task = URLSession.shared.dataTask(with: request) { data, _, error in
@@ -330,10 +330,46 @@ final class APICaller {
             task.resume()
         }
     }
+    //MARK: - Library (Album)
+    public func getCurrentUserAlbums(completion: @escaping (Result<[Album], Error>) -> Void) {
+        createRequest(with: URL(string: Constants.baseURL + "/me/albums"), type: .GET) { request in
+            let task = URLSession.shared.dataTask(with: request) { data, _, error in
+                guard let data = data, error == nil else {
+                    completion(.failure(APIError.failedToGetData))
+                    return
+                }
+                do {
+                    let result = try JSONDecoder().decode(LibraryAlbumsResponse.self, from: data)
+                    completion(.success(result.items.compactMap({ $0.album })))
+                } catch {
+                    completion(.failure(error))
+                }
+            }
+            task.resume()
+        }
+    }
+    public func saveAlbum(album: Album, completion: @escaping (Bool) -> Void) {
+        createRequest(with: URL(string: Constants.baseURL + "/me/albums?ids=\(album.id)"), type: .PUT) { baseRequest in
+            var request = baseRequest
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            
+            let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                guard let code = (response as? HTTPURLResponse)?.statusCode,
+                      error == nil else {
+                    completion(false)
+                    return
+                }
+                print(code)
+                completion(code == 200)
+            }
+            task.resume()
+        }
+    }
     //MARK: - Request
     enum HTTPMethod: String {
         case GET
         case POST
+        case PUT
         case DELETE
     }
     

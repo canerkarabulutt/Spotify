@@ -42,6 +42,22 @@ class AlbumViewController: UIViewController {
         collectionView.frame = view.bounds
     }
 }
+//MARK: - Selectors
+extension AlbumViewController {
+    @objc private func didTapActions() {
+        let actionSheet = UIAlertController(title: album.name, message: "Actions", preferredStyle: .actionSheet)
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        actionSheet.addAction(UIAlertAction(title: "Save Album", style: .default, handler: { [weak self] _ in
+            guard let strongSelf = self else { return }
+            APICaller.shared.saveAlbum(album: strongSelf.album) { success in
+                if success {
+                    NotificationCenter.default.post(name: .albumSavedNotification, object: nil)
+                }
+            }
+        }))
+        present(actionSheet, animated: true)
+    }
+}
 //MARK: - Service
 extension AlbumViewController {
     private func fetchData() {
@@ -70,6 +86,8 @@ extension AlbumViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.backgroundColor = .systemBackground
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(didTapActions))
     }
 }
 //MARK: - UICollectionViewDelegate & UICollectionViewDataSource
