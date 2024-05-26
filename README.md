@@ -2,21 +2,21 @@
 
 ## Auth - Settings
 
-<img src="https://github.com/canerkarabulutt/Spotify/assets/152221111/1c8d5186-7c17-4e98-b99a-a196372e77d2" alt="Auth" width="168" height="400">
-<img src="https://github.com/canerkarabulutt/Spotify/assets/152221111/1ce12971-d14f-46e2-a198-10e90810448e" alt="Auth" width="168" height="400">
-<img src="https://github.com/canerkarabulutt/Spotify/assets/152221111/6ddd229e-7e6e-4960-a79a-ea149aac3234" alt="Settings" width="168" height="400">
-<img src="https://github.com/canerkarabulutt/Spotify/assets/152221111/914fa0ce-383d-4956-afa1-7f0824bfe977" alt="Auth" width="168" height="400">
-<img src="https://github.com/canerkarabulutt/Spotify/assets/152221111/33638632-158d-4f95-835a-1f77b7397bc2" alt="Profile" width="168" height="400">
+<img src="https://github.com/canerkarabulutt/Spotify/assets/152221111/1c8d5186-7c17-4e98-b99a-a196372e77d2" alt="Auth" width="165" height="380">
+<img src="https://github.com/canerkarabulutt/Spotify/assets/152221111/1ce12971-d14f-46e2-a198-10e90810448e" alt="Auth" width="165" height="380">
+<img src="https://github.com/canerkarabulutt/Spotify/assets/152221111/6ddd229e-7e6e-4960-a79a-ea149aac3234" alt="Settings" width="165" height="380">
+<img src="https://github.com/canerkarabulutt/Spotify/assets/152221111/914fa0ce-383d-4956-afa1-7f0824bfe977" alt="Auth" width="165" height="380">
+<img src="https://github.com/canerkarabulutt/Spotify/assets/152221111/33638632-158d-4f95-835a-1f77b7397bc2" alt="Profile" width="165" height="380">
 
 
 
 ## Browse 
 
-<img src="https://github.com/canerkarabulutt/Spotify/assets/152221111/3498685b-d904-482e-ba27-70161bfe618c" alt="Browse" width="168" height="400">
-<img src="https://github.com/canerkarabulutt/Spotify/assets/152221111/a50290f7-4330-4683-8d8a-b4d548361157" alt="Browse" width="168" height="400">
-<img src="https://github.com/canerkarabulutt/Spotify/assets/152221111/66b1c35a-c3dd-4a96-8bea-062b6040945e" alt="Browse" width="168" height="400">
-<img src="https://github.com/canerkarabulutt/Spotify/assets/152221111/18b844d0-1f9f-428b-82b8-732f1ad7bc5c" alt="Browse" width="168" height="400">
-<img src="https://github.com/canerkarabulutt/Spotify/assets/152221111/15dacc9a-8281-48eb-b24a-cfbbe24403a4" alt="Browse" width="168" height="400">
+<img src="https://github.com/canerkarabulutt/Spotify/assets/152221111/3498685b-d904-482e-ba27-70161bfe618c" alt="Browse" width="165" height="380">
+<img src="https://github.com/canerkarabulutt/Spotify/assets/152221111/a50290f7-4330-4683-8d8a-b4d548361157" alt="Browse" width="165" height="380">
+<img src="https://github.com/canerkarabulutt/Spotify/assets/152221111/66b1c35a-c3dd-4a96-8bea-062b6040945e" alt="Browse" width="165" height="380">
+<img src="https://github.com/canerkarabulutt/Spotify/assets/152221111/18b844d0-1f9f-428b-82b8-732f1ad7bc5c" alt="Browse" width="165" height="380">
+<img src="https://github.com/canerkarabulutt/Spotify/assets/152221111/15dacc9a-8281-48eb-b24a-cfbbe24403a4" alt="Browse" width="165" height="380">
 
 
 
